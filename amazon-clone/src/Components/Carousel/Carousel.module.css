@@ -16,3 +16,7 @@
 
 }
 
+
+.react-responsive-carousel .carousel .control-dots {
+    display: none !important;
+}

@@ -3,6 +3,12 @@
     padding: 0;
 }
 
+.fixed {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
 .header__container {
     background-color: #1a1a1a;
     display: flex;
@@ -16,11 +22,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 250px;
+    max-width: 280px;
 }
 
 .logo__container img {
-    width: 60%;
+    width: 80%;
     padding-top: 5px;
     margin-left: 20px;
     vertical-align: middle;
@@ -28,9 +34,9 @@
 .delivery {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     margin-left: 20px;
-    /* gap: 3px; */
+    gap: 3px;
     font-weight: bold;
     padding: 5px;
 }
@@ -70,24 +76,8 @@
 .search svg {
     padding: 7px;
     background: #fabd69;
-    color: black;
+    color: #1a1a1a;
 }
-
-/* .search select {
-
-    padding: 8px;
-    border: 2px solid #ccc;
-    border-radius: 3px;
-} */
-
-/* .search option All {
-    background-color: rgba(211, 211, 211, 0.156);
-}
-
-.search option:hover {
-    background-color: rgba(128, 128, 128, 0);
-} */
-
 
 .search svg:hover {
     background-color: #d49644;
@@ -111,7 +101,7 @@
 }
 
 .order__container p {
-    font-size: 10px;
+    font-size: 13px;
 }
 .language {
     width: 100px;

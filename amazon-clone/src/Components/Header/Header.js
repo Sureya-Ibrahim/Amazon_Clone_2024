@@ -1,76 +1,99 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./header.module.css";
+import { Link } from "react-router-dom";
 import { IoLocationOutline } from "react-icons/io5";
 import { BsSearch } from "react-icons/bs";
 import LowerHeader from "./LowerHeader";
 import { BiCart } from "react-icons/bi";
+import { DataContext } from "../DataProvider/DataProvider";
+import {auth} from "../../Utility/firebase"
+
 
 const Header = () => {
+  const [{user, basket }, dispatch] = useContext(DataContext);
+  const totalItem = basket?.reduce((amount, item) => {
+    return item.amount + amount;
+  }, 0);
+
   return (
-    <>
+    <section className={classes.fixed}>
       <section>
         <div className={classes.header__container}>
           {/* logo section */}
           <div className={classes.logo__container}>
-            <a href="#">
+            <Link to={"/"}>
               <img
                 src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
                 alt="amazon logo"
               />
-            </a>
+            </Link>
 
             <div className={classes.delivery}>
               <span>
-                <IoLocationOutline/>
+                <IoLocationOutline />
               </span>
               <div>
-                <p>Deliver to </p>
-                <span>Ethiopia</span>
+                <p>Deliver to</p>
+                <span>Updatelocation</span>
               </div>
             </div>
           </div>
-
           {/* search section */}
           <div className={classes.search}>
             <select name="" id="">
               <option value="">All</option>
             </select>
             <input type="text" />
-            <BsSearch size={25} />
+            <BsSearch size={38} />
           </div>
-
           {/* other section */}
           <div className={classes.order__container}>
-            <a href="" className={classes.language}>
+            <Link to="" className={classes.language}>
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/US_flag_51_stars.svg/1024px-US_flag_51_stars.svg.png"
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1024px-Flag_of_the_United_States.svg.png"
                 alt=""
               />
 
               <select name="" id="">
                 <option value="">EN</option>
               </select>
-            </a>
-            <a href="">
-              <p>Hello,sign in</p>
-              <span>Account & Lists</span>
-            </a>
+            </Link>
 
-            <a href="">
-              <p>Returns</p>
+            <Link to={!user && "/login"}>
+              <div>
+                {user ? (
+                  <>
+                    <p>Hello {user?.email?.split("@")[0]} </p>
+                    <span onClick={()=>(user ? auth.signOut() : null)}>
+                      Sign Out
+                      </span>
+                  </>
+                ) : (
+                  <>
+                  <p>Hello, Sign In</p>
+                  <span>Account & Lists</span>
+                  </>
+                )}
+                
+              </div>
+            </Link>
+
+            <Link to="/orders">
+              <p>returns</p>
               <span>& Orders</span>
-            </a>
-
-            <a href="" className={classes.cart}>
+            </Link>
+            <Link to="/cart" className={classes.cart}>
               <BiCart size={35} />
-              <span>0</span>
-            </a>
+              <span>{totalItem}</span>
+            </Link>
           </div>
         </div>
       </section>
-      <LowerHeader/>
-    </>
+      <LowerHeader />
+    </section>
   );
 };
 
 export default Header;
+
+

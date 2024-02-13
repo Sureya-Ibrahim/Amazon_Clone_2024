@@ -30,7 +30,7 @@
     color: rgb(9, 132, 209);
 }
 
-/* .category__container {
+.category__container {
     position: relative;
     margin-top: -10%;
     display: grid;
@@ -39,14 +39,6 @@
     gap: 50px;
     margin-right: auto;
     margin-left: auto;
-    place-items: center;
-} */
-
-.category__container {
-    position: relative;
-    margin-top: -10%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     place-items: center;
 }
 
